@@ -39,7 +39,6 @@ public class App{
     private boolean thread1Running = false; 
     private boolean thread2Running = false;
     private boolean answered = true;
-    private boolean ranOuttaTime = false;
 
     private int runtime = 0;
     private static int numberOfQuestions = 1;
@@ -66,7 +65,7 @@ public class App{
                     runtime++;
                     timer += 1000;
                 }
-                if(runtime == 5){
+                if(runtime == 15){
                     System.out.println("You ran out of time L");
                     runtime = 0;
                 }
@@ -87,7 +86,7 @@ public class App{
                     System.out.println(trigFunctions[trigFunctionID] + radianValues[radianValueID] + ") number answered: " + numberAnswered + "/" + numberOfQuestions + " number correct: " + numberCorrect + "/" + numberOfQuestions);
                     response5 = sc.nextLine();
                     if(!response5.equals(expectedAnswer)){
-                        System.out.println("You're dumb\n");
+                        System.out.println("You're dumb the correct answer is " + expectedAnswer + "! \n");
                         numberAnswered++;
                         runtime = 0;
                     }
