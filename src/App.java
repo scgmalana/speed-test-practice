@@ -93,11 +93,23 @@ public class App{
                     if(response5.equals(expectedAnswer)){
                         System.out.println("What a genius\n");
                         numberAnswered++;
+                        numberCorrect++;
                         runtime = 0;
                     }
 
                     answered = true;
                 }
+            }
+            thread1Running = false;
+            thread2Running = false; 
+            
+            System.out.println("You finished the speedtest");
+            System.out.println("You answered " + numberCorrect + " questions correctly out of " + numberOfQuestions);
+            if(numberCorrect/numberOfQuestions < 0.6){
+                System.out.println("Hey that's pretty good");
+            }
+            else if (numberCorrect/numberOfQuestions == 1){
+                System.out.println("Ur my goat");
             }
         }
     };
