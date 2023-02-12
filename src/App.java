@@ -38,8 +38,14 @@ public class App{
     
     private boolean thread1Running = false; 
     private boolean thread2Running = false;
-    int runtime = 0;
-    boolean answerCorrect = true;
+    private boolean answered = true;
+    private boolean ranOuttaTime = false;
+
+    private int runtime = 0;
+    private static int numberOfQuestions = 1;
+    private int numberAnswered = 0;
+    private int numberCorrect = 0;
+    private String response5; 
 
     private Thread thread1 = new Thread() {
         public void run() {
@@ -60,12 +66,8 @@ public class App{
                     runtime++;
                     timer += 1000;
                 }
-                if(runtime == 15){
+                if(runtime == 5){
                     System.out.println("You ran out of time L");
-                    thread1Running = false;
-                    thread2Running = false;
-                }
-                if(answerCorrect){
                     runtime = 0;
                 }
             }  
@@ -74,22 +76,28 @@ public class App{
 
     private Thread thread2 = new Thread() {
         public void run(){
-            while(thread2Running){
-                if(answerCorrect){
-                    answerCorrect = false;
+            while(thread2Running && numberAnswered < numberOfQuestions){
+                if(answered){
+                    runtime = 0;
+                    answered = false;
                     int trigFunctionID = getRandomNumber(0, TRIG_FUNCTION_SIZE);
                     int radianValueID = getRandomNumber(0, RADIAN_VALUE_SIZE);
                     String expectedAnswer = answerKey[radianValueID][trigFunctionID];
         
-                    System.out.println(trigFunctions[trigFunctionID] + radianValues[radianValueID] + ")");
-                    String response5 = sc.nextLine();
+                    System.out.println(trigFunctions[trigFunctionID] + radianValues[radianValueID] + ") number answered: " + numberAnswered + "/" + numberOfQuestions + " number correct: " + numberCorrect + "/" + numberOfQuestions);
+                    response5 = sc.nextLine();
                     if(!response5.equals(expectedAnswer)){
-                        System.out.println("You're dumb");
+                        System.out.println("You're dumb\n");
+                        numberAnswered++;
+                        runtime = 0;
                     }
                     if(response5.equals(expectedAnswer)){
-                        System.out.println("What a genius");
-                        answerCorrect = true;
+                        System.out.println("What a genius\n");
+                        numberAnswered++;
+                        runtime = 0;
                     }
+
+                    answered = true;
                 }
             }
         }
@@ -106,18 +114,18 @@ public class App{
         thread2Running = true;
         thread1.start();
         thread2.start();
-
-        if(!thread2Running){
-            thread2.interrupt();
-        }
     }
     public static void main(String[] args) throws Exception {
         Scanner sc1 = new Scanner(System.in);
         System.out.println("This is a program to practice memorizing trig stuff for the Math speedtest");
         System.out.println("Answers should be formatted like this: 2sqrt3/3, sqrt2, sqrt3, etc.");
+        System.out.println("If you run out of time, press Enter to get the next question");
         System.out.println("Would you like to begin? y/n");
         String response = sc1.nextLine();
         if(response.equalsIgnoreCase("y")){
+            System.out.println("How many questions do you want to answer?");
+            String response2 = sc1.nextLine();
+            numberOfQuestions = Integer.parseInt(response2);
             new App().start();
         }
     }
