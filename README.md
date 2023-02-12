@@ -1,18 +1,7 @@
-## Getting Started
+if it dont work run it over and over again until you get this message:
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This is a program to practice memorizing trig stuff for the Math speedtest
+Answers should be formatted like this: 2sqrt3/3, sqrt2, sqrt3, etc.
+Would you like to begin? y/n
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+idk whats happening and tbh i dont really wanna find out
